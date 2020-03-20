@@ -2,7 +2,7 @@
 	
 	<form v-if="query.form=='login'" @submit.prevent="loginSubmit();">
 		<div class="alert alert-success" v-if="login.success" v-html="login.success"></div>
-		<div class="alert alert-danger" v-if="login.danger" v-html="login.danger"></div>
+		<div class="alert alert-danger" v-if="$store.state.auth.error" v-html="$store.state.auth.error"></div>
 
 		<div class="form-group">
 			<label>Login</label>
@@ -17,7 +17,7 @@
 		<div class="row">
 			<div class="col">
 				<button type="submit" class="btn btn-primary btn-block">
-					<i class="fa fa-fw fa-spin fa-spinner" v-if="login.loading"></i>
+					<i class="fa fa-fw fa-spin fa-spinner" v-if="$store.state.auth.loading"></i>
 					<span v-else>Login</span>
 				</button>
 			</div>
@@ -100,9 +100,13 @@
 	</div>
 
   <!--
+  -->
+	<button type="button"
+		class="btn btn-primary btn-block"
+		@click="$store.dispatch('auth/logout');"
+	>Logout</button>
   <pre>$store.state.auth: {{ $store.state.auth }}</pre>
   <pre>$data: {{ $data }}</pre>
-  -->
 </div></template>
 
 <script>
@@ -118,10 +122,8 @@ export default {
   		}, this.$route.query),
 
   		login: {
-  			loading: false,
-  			danger: false,
-  			success: false,
-  			post: this.loginDefault(),
+			success: false,
+			post: this.loginDefault(),
   		},
 
   		register: {
@@ -149,20 +151,16 @@ export default {
   	},
 
   	loginSubmit() {
-  		this.login.loading = true;
-  		this.login.danger = false;
-  		this.login.success = false;
-
-  		var _response = (user, error) => {
-			this.login.loading = false;
-			this.login.success = false;
-			if (error) { return this.login.danger = error.message; }
-			this.login.success = 'Usuário logado';
-  		};
+		this.login.danger = false;
+		this.login.success = false;
 
 		this.$store.dispatch('auth/login', this.login.post)
-			.then((user) => { _response(user, false); })
-			.catch((err) => { _response(false, err); });
+			.then((user) => {
+				// 
+			})
+			.catch((err) => {
+				// 
+			});
   	},
 
   	registerDefault() {

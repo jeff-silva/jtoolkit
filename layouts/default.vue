@@ -1,5 +1,11 @@
 <template><div>
-  <AppTemplate>
+  <AppTemplate :auth="$store.state.auth.user">
+    <template v-slot:auth>
+      <div class="p-3">
+        <Auth></Auth>
+      </div>
+    </template>
+
     <template v-slot:logo>
       <img src="https://logoipsum.com/assets/logo/logo-1.svg" alt="" style="height:70px; margin:-20px 0px;">
     </template>
@@ -24,7 +30,13 @@
       </div>
     </template>
 
-    <template v-slot:header>&nbsp;</template>
+    <template v-slot:header>
+      <div class="row no-gutters align-items-center">
+        <div class="col text-right">
+          <a href="javascript:;" @click="$store.dispatch('auth/logout');">Logout</a>
+        </div>
+      </div>
+    </template>
 
     <template v-slot:content><nuxt /></template>
   </AppTemplate>
@@ -32,10 +44,12 @@
 
 <script>
 import AppTemplate from '~/components/AppTemplate.vue';
+import Auth from '~/components/Auth.vue';
 
 export default {
   components: {
     AppTemplate,
+    Auth,
   }
 }
 </script>
