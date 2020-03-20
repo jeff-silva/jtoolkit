@@ -1,5 +1,19 @@
 <template><div>
-  <AppActions>Ações</AppActions>
+  <app-actions>
+  	<div class="row">
+  		<div class="col">
+  			<button class="btn btn-primary btn-sm btn-block">Aaa</button>
+  		</div>
+
+  		<div class="col">
+  			<button class="btn btn-primary btn-sm btn-block">Aaa</button>
+  		</div>
+
+  		<div class="col">
+  			<button class="btn btn-primary btn-sm btn-block">Aaa</button>
+  		</div>
+  	</div>
+  </app-actions>
   Conteúdo
 </div></template>
 

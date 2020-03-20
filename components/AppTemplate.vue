@@ -1,8 +1,10 @@
 <template><div class="app-layout" style="position:relative; height:100vh;">
 
   <transition enter-active-class="animated fadeIn faster" leave-active-class="animated fadeOut faster" :duration="300">
-    <div v-if="drawerShow && isMobile" style="position:fixed; top:0px; left:0px; width:100%; height:100vh; overflow:auto; background:#00000044; z-index:10;" @click.self="drawerShow=false;">
-      <div class="animated fadeInLeft" style="width:80%; height:100vh; background:#fff;"><slot name="drawer"></slot></div>
+    <div v-if="drawerShow && isMobile" class="animated fadeIn" style="position:fixed; top:0px; left:0px; width:100%; height:100vh; overflow:auto; background:#00000044; z-index:10;" @click.self="drawerShow=false;">
+      <div class="animated fadeInLeft" style="width:80%; height:100vh; background:#fff; animation-duration:300ms;">
+        <slot name="drawer"></slot>
+      </div>
     </div>
   </transition>
 

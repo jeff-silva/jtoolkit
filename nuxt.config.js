@@ -1,3 +1,4 @@
+require('dotenv').config();
 
 export default {
   mode: 'spa',
@@ -47,6 +48,25 @@ export default {
     '@nuxtjs/pwa',
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
+
+    [
+      '@nuxtjs/firebase',
+      {
+        config: {
+          apiKey: process.env.firebase_apiKey,
+          authDomain: process.env.firebase_authDomain,
+          databaseURL: process.env.firebase_databaseURL,
+          projectId: process.env.firebase_projectId,
+          storageBucket: process.env.firebase_storageBucket,
+          messagingSenderId: process.env.firebase_messagingSenderId,
+          appId: process.env.firebase_appId,
+          measurementId: process.env.firebase_measurementId,
+        },
+        services: {
+          auth: true // Just as example. Can be any other service.
+        }
+      }
+    ],
   ],
   /*
   ** Axios module configuration

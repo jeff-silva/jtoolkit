@@ -1,13 +1,13 @@
 <template><div>
   
   <div v-if="isMobile" style="position:fixed; bottom:0px; left:0px; width:100%; background:#fff; box-shadow:0px 0px 5px 5px #00000022;">
-    <button type="button" class="btn btn-light btn-block" @click="show = !show;">
+    <button type="button" class="btn btn-sm btn-light btn-block" @click="show = !show;">
       <span v-if="show" v-html="textShow"></span>
       <span v-else v-html="textHide" class="text-muted"></span>
     </button>
 
     <transition enter-active-class="animated fadeInUp faster" leave-active-class="animated fadeOutDown faster" :duration="300">
-      <div v-if="show" style="padding:15px;">
+      <div v-if="show" style="padding:15px;  animation-duration:200ms;">
         <slot></slot>
       </div>
     </transition>
